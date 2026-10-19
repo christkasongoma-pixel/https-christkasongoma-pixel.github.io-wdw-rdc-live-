@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr" data-formfactor="desktop">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RDC en direct – WDW News Today</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#14182b;--muted:#5a6280;--accent:#0b5fd6;--line:#e1e5f0;--ok:#127a4b;--okbg:#e2f6ec;--warn:#9a5b00;--warnbg:#fff1d6;--bad:#b3261e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1222;--card:#171c32;--text:#eef0fb;--muted:#9aa3c4;--accent:#7fb0ff;--line:#262c49;--ok:#6fe0a8;--okbg:#12362a;--warn:#ffc46b;--warnbg:#3a2c0e;--bad:#ff8a80}}
+:root[data-theme="dark"]{--bg:#0e1222;--card:#171c32;--text:#eef0fb;--muted:#9aa3c4;--accent:#7fb0ff;--line:#262c49;--ok:#6fe0a8;--okbg:#12362a;--warn:#ffc46b;--warnbg:#3a2c0e;--bad:#ff8a80}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--accent)}
+.wrap{max-width:1000px;margin:0 auto;padding:0 18px}
+header{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:58px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:19px}.logo span{color:var(--accent)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--muted)}
+.pill.live .dot{background:var(--ok);box-shadow:0 0 0 0 var(--ok);animation:p 1.8s infinite}
+@keyframes p{70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.hero{margin:26px 0 10px}
+.hero h1{margin:0 0 4px;font-size:clamp(26px,5vw,38px);line-height:1.1}
+.hero p{margin:0;color:var(--muted)}
+.tools{display:flex;gap:10px;align-items:center;margin:14px 0 22px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+button{padding:8px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);font:inherit;font-weight:600;cursor:pointer}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:8px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.kpi b{display:block;font-size:26px;line-height:1.1}.kpi span{font-size:13px;color:var(--muted)}
+.kpi.bad b{color:var(--bad)}
+.note{font-size:12.5px;color:var(--muted);margin:6px 2px 22px}
+.list{display:grid;gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.badge{text-transform:none;letter-spacing:0;font-weight:700;border-radius:999px;padding:2px 10px;background:var(--okbg);color:var(--ok)}
+.badge.w{background:var(--warnbg);color:var(--warn)}
+.card h2{margin:6px 0 6px;font-size:19px;line-height:1.3}
+.card p{margin:0 0 10px}
+.src{font-size:13px;color:var(--muted)}.src a{margin-right:10px}
+footer{border-top:1px solid var(--line);margin-top:34px;padding:20px 0 34px;color:var(--muted);font-size:13px}
+.tabs{display:flex;gap:8px;padding-top:14px}
+.tabs button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+#v-stats[hidden],#v-news[hidden]{display:none}
+.bars{display:grid;gap:8px;margin:14px 0}
+.row{display:grid;grid-template-columns:84px 1fr 44px;gap:10px;align-items:center;font-size:14px}
+.track{height:14px;border-radius:7px;background:var(--line);overflow:hidden}
+.fill{height:100%;background:var(--accent);border-radius:7px;min-width:2px}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <div class="logo">WDW <span>News Today</span> · RDC</div>
+  <div class="pill" id="status"><i class="dot"></i><span id="stxt">Instantané</span></div>
+</div></header>
+<nav class="wrap tabs" aria-label="Onglets"><button type="button" id="t-news" class="on">Actualités</button><button type="button" id="t-stats">Connexions</button></nav>
+
+<main class="wrap" id="v-news">
+  <section class="hero">
+    <h1>RDC en direct</h1>
+    <p>Informations recoupées sur plusieurs sources, republiées en temps réel.</p>
+  </section>
+  <div class="tools"><button type="button" id="rr">Re-rendre</button><span id="stamp"></span></div>
+
+  <section class="kpis" id="kpis" aria-label="Ebola"></section>
+  <p class="note" id="knote"></p>
+  <section class="list" id="list"></section>
+</main>
+
+<main class="wrap" id="v-stats" hidden>
+  <section class="hero"><h1>Connexions</h1><p>Test de 7 jours glissants, mis à jour en direct.</p></section>
+  <section class="kpis" id="s-kpis"></section>
+  <section class="bars" id="s-bars" aria-label="Connexions par jour"></section>
+  <p class="note" id="s-note">Seules les connexions de personnes identifiées sur claude.ai sont comptées. Les visiteurs anonymes ne sont pas comptabilisés.</p>
+</main>
+<footer><div class="wrap">
+  Méthode : un élément est marqué « Vérifié » quand au moins deux sources indépendantes le rapportent. Sinon il est signalé « 1 source » ou « Recoupé par tendance ». Les résumés sont reformulés ; consultez les sources pour le détail.
+</div></footer>
+
+<script type="application/json" id="seed">
+{"updated":"2026-10-11","kpis":{"asof":"2 octobre 2026","note":"Source : autorités congolaises via Koaci. Tendance cohérente avec l'AFP du 12 septembre (7 022 cas, 3 398 décès).","items":[{"l":"Cas confirmés","v":"8 300"},{"l":"Décès","v":"4 018","bad":true},{"l":"Létalité","v":"48,4 %"},{"l":"Provinces touchées","v":"7"}]},"items":[
+{"tag":"Paix","date":"11 oct.","title":"Tshisekedi reçoit le Panel des facilitateurs de l'Union africaine","summary":"Après deux jours de consultations à Kinshasa, le président a reçu le 9 octobre la délégation du Panel de l'UA. Les échanges portaient sur la crise sécuritaire dans l'Est et sur les processus de paix de Washington et de Doha. Les facilitateurs avaient aussi échangé avec l'AFC/M23 à Goma.","v":2,"sources":[{"n":"Radio Okapi","u":"https://www.radiookapi.net/2026/10/11/actualite/politique/felix-tshisekedi-recoit-le-panel-des-facilitateurs-de-lua-pour-des"},{"n":"Radio Okapi (revue de presse)","u":"https://www.radiookapi.net/2026/10/07/actualite/revue-de-presse/le-potentiel-fdlr-reddition-et-paix-dans-lest-de-la-rdc"}]},
+{"tag":"ONU","date":"2-3 oct.","title":"Le Conseil de sécurité exige à nouveau le retrait des troupes rwandaises","summary":"Dans une déclaration lue le 2 octobre, le Conseil salue le protocole de reddition des FDLR et réclame la mise en œuvre de la résolution 2773. Il demande aux forces rwandaises de cesser tout soutien au M23 et de quitter l'Est de la RDC.","v":2,"sources":[{"n":"ACP","u":"https://acp.cd/nation/rdc-le-conseil-de-securite-exige-de-nouveau-le-retrait-des-troupes-rwandaises/"},{"n":"Congo Quotidien","u":"https://www.congoquotidien.com/2026/10/03/debrief-3-octobre-2026-onu-rwanda-rdc-usa-peche-incendie/"}]},
+{"tag":"Santé","date":"2 oct.","title":"Ebola : la plus meurtrière épidémie de l'histoire de la RDC","summary":"L'épidémie de souche Bundibugyo, déclarée en mai, a franchi 4 000 décès. La riposte reste freinée par l'insécurité et la méfiance des communautés, et des essais avec le vaccin Ervebo sont en cours. La France a promis son soutien à la riposte le 2 octobre.","v":"t","sources":[{"n":"Koaci","u":"https://www.koaci.com/article/2026/10/02/congo-rdc/politique/rdc-lepidemie-debola-franchit-le-cap-des-4-000-morts_201217.html"},{"n":"AFP / Belga","u":"https://www.dhnet.be/dernieres-depeches/2026/09/12/rdc-plus-de-7000-cas-debola-recenses-NF6MZ73ZJ5G7FEOLNFAIRMWKQ4/"},{"n":"Présidence RDC","u":"https://www.presidence.cd/actualites"}]},
+{"tag":"Diplomatie","date":"3 oct.","title":"Tshisekedi et Sassou Nguesso se rencontrent à Brazzaville","summary":"Le chef de l'État congolais s'est rendu à Brazzaville le 3 octobre pour un entretien avec son homologue du Congo.","v":2,"sources":[{"n":"Présidence RDC","u":"https://www.presidence.cd/actualites"},{"n":"Congo Quotidien","u":"https://www.congoquotidien.com/2026/10/06/debrief-rdc-6-octobre-2026/"}]},
+{"tag":"Kinshasa","date":"7-10 oct.","title":"ExpoBéton RDC : 12e édition sur la transformation des villes","summary":"Le président a ouvert le salon le 7 octobre, consacré à la construction, aux infrastructures et au développement urbain. Le projet « Kinshasa Kia Mona » y a été présenté comme initiative clé.","v":1,"sources":[{"n":"Présidence RDC","u":"https://presidence.cd/actualites-une"}]},
+{"tag":"Défense","date":"5 oct.","title":"Crash de Kenge : visite aux familles de deux généraux disparus","summary":"Le président et la Première dame ont rendu visite aux familles des deux officiers généraux le 5 octobre. L'événement figure aussi dans la revue de presse du 6 octobre.","v":2,"sources":[{"n":"Présidence RDC","u":"https://presidence.cd/actualites-une"},{"n":"Radio Okapi (revue de presse)","u":"https://www.radiookapi.net/2026/10/07/actualite/revue-de-presse/le-potentiel-fdlr-reddition-et-paix-dans-lest-de-la-rdc"}]},
+{"tag":"Politique","date":"9-10 oct.","title":"Débat sur la dette publique entre Joseph Kabila et le gouvernement","summary":"Joseph Kabila a dénoncé une dette publique de plus de 18 milliards USD. Le ministre des Finances, Doudou Fwamba, lui a répondu le 10 octobre. Ce sont des positions politiques, présentées ici comme telles et non comme des faits établis.","v":1,"sources":[{"n":"mediacongo.net","u":"https://www.mediacongo.net/articles-actualite-1_politique.html"}]}
+]}
+</script>
+
+<script>
+(function () {
+  'use strict';
+  var FEED = JSON.parse(document.getElementById('seed').textContent);
+  var $ = function (id) { return document.getElementById(id); };
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = String(text);
+    return e;
+  }
+  function safeUrl(u) { return typeof u === 'string' && /^https:\/\//.test(u) ? u : null; }
+
+  function render() {
+    var k = FEED.kpis, box = $('kpis'), list = $('list');
+    box.textContent = ''; list.textContent = '';
+    if (k && k.items) {
+      k.items.forEach(function (i) {
+        var d = el('div', 'kpi' + (i.bad ? ' bad' : ''));
+        d.appendChild(el('b', '', i.v)); d.appendChild(el('span', '', i.l));
+        box.appendChild(d);
+      });
+      $('knote').textContent = 'Ebola au ' + k.asof + '. ' + (k.note || '');
+    }
+    (FEED.items || []).forEach(function (it) {
+      var c = el('article', 'card'), m = el('div', 'meta');
+      m.appendChild(el('span', '', it.tag + ' · ' + it.date));
+      var ok = it.v === 2;
+      var lbl = ok ? 'Vérifié · 2 sources' : (it.v === 't' ? 'Recoupé par tendance' : '1 source');
+      m.appendChild(el('span', 'badge' + (ok ? '' : ' w'), lbl));
+      c.appendChild(m);
+      c.appendChild(el('h2', '', it.title));
+      c.appendChild(el('p', '', it.summary));
+      var s = el('div', 'src', 'Sources : ');
+      (it.sources || []).forEach(function (x) {
+        var u = safeUrl(x.u); if (!u) return;
+        var a = el('a', '', x.n); a.href = u; a.target = '_blank'; a.rel = 'noopener noreferrer';
+        s.appendChild(a);
+      });
+      c.appendChild(s); list.appendChild(c);
+    });
+    $('stamp').textContent = 'Données du ' + FEED.updated + ' · rendu à ' + new Date().toLocaleTimeString('fr-FR');
+  }
+
+  function setStatus(live) {
+    $('status').className = 'pill' + (live ? ' live' : '');
+    $('stxt').textContent = live ? 'En direct' : 'Instantané';
+  }
+
+  render();
+  $('rr').addEventListener('click', render);
+
+  // Temps réel : si la base partagée est disponible, chaque mise à jour de feed/latest re-rend la page.
+  try {
+    if (window.claude && window.claude.use) {
+      window.claude.use('db').then(function (db) {
+        if (!db) return;
+        db.doc('feed/latest').onSnapshot(function (snap) {
+          setStatus(true);
+          var d = snap.exists ? snap.data() : null;
+          if (d && d.feed && Array.isArray(d.feed.items)) { FEED = d.feed; render(); }
+        }, function () { setStatus(false); });
+      }).catch(function () {});
+    }
+  } catch (e) {}
+
+  function tab(news) {
+    $('v-news').hidden = !news; $('v-stats').hidden = news;
+    $('t-news').className = news ? 'on' : ''; $('t-stats').className = news ? '' : 'on';
+  }
+  $('t-news').addEventListener('click', function () { tab(true); });
+  $('t-stats').addEventListener('click', function () { tab(false); });
+
+  function dayKey(off) { return new Date(Date.now() - off * 864e5).toISOString().slice(0, 10); }
+
+  function renderStats(docs) {
+    var days = [], per = {}, total = 0, uniq = 0, today = dayKey(0), todayN = 0, i;
+    for (i = 6; i >= 0; i--) { days.push(dayKey(i)); }
+    days.forEach(function (k) { per[k] = 0; });
+    docs.forEach(function (s) {
+      var m = (s.data() || {}).days || {}, active = false;
+      days.forEach(function (k) { if (m[k]) { per[k] += m[k]; total += m[k]; active = true; } });
+      if (active) uniq++;
+      if (m[today]) todayN++;
+    });
+    var k = $('s-kpis'); k.textContent = '';
+    [['Connexions (7 j)', total], ['Visiteurs uniques (7 j)', uniq], ["Visiteurs aujourd'hui", todayN]].forEach(function (x) {
+      var d = el('div', 'kpi'); d.appendChild(el('b', '', x[1])); d.appendChild(el('span', '', x[0])); k.appendChild(d);
+    });
+    var max = Math.max.apply(null, days.map(function (d) { return per[d]; }).concat([1]));
+    var b = $('s-bars'); b.textContent = '';
+    days.forEach(function (d) {
+      var r = el('div', 'row'), t = el('div', 'track'), f = el('div', 'fill');
+      f.style.width = (per[d] / max * 100) + '%'; t.appendChild(f);
+      r.appendChild(el('span', '', d.slice(5))); r.appendChild(t); r.appendChild(el('b', '', per[d]));
+      b.appendChild(r);
+    });
+  }
+  renderStats([]);
+
+  try {
+    if (window.claude && window.claude.use) {
+      Promise.all([window.claude.use('db'), window.claude.use('user')]).then(function (r) {
+        var db = r[0], user = r[1];
+        if (!db) { $('s-note').textContent = 'Compteur indisponible : connexion à la base impossible.'; return; }
+        db.collection('visits').onSnapshot(function (snap) { renderStats(snap.docs); }, function () {});
+        if (!user) return;
+        user.id().then(function (uid) {
+          if (!uid) return;
+          var ref = db.doc('visits/' + uid);
+          ref.get().then(function (s) {
+            var days = ((s.exists && s.data()) || {}).days || {}, t = dayKey(0);
+            days[t] = (days[t] || 0) + 1;
+            return ref.set({ days: days });
+          }).catch(function () {});
+        }).catch(function () {});
+      }).catch(function () {});
+    }
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>
