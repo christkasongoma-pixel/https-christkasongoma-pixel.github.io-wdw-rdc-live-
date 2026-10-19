@@ -1,1 +1,69 @@
-{"feed": {"updated": "2026-10-19", "kpis": {"asof": "19 October October 2026", "note": "Source : recoupement automatique Radio Okapi, MediaCongo, Actualite.cd", "items": [{"l": "Cas confirmés", "v": "8 300"}, {"l": "Décès", "v": "4 018", "bad": true}, {"l": "Létalité", "v": "48,4 %"}, {"l": "Provinces touchées", "v": "8"}]}, "items": [{"tag": "Actualité", "date": "En direct", "title": "Soundcloud", "summary": "Consultez le site pour le détail de la dépêche.", "v": 1, "sources": [{"n": "Actualite.cd", "u": "https://actualite.cd"}]}, {"tag": "Actualité", "date": "En direct", "title": "Caricature", "summary": "Consultez le site pour le détail de la dépêche.", "v": 1, "sources": [{"n": "Actualite.cd", "u": "https://actualite.cd"}]}, {"tag": "Actualité", "date": "En direct", "title": "Sport", "summary": "Consultez le site pour le détail de la dépêche.", "v": 1, "sources": [{"n": "Actualite.cd", "u": "https://actualite.cd"}]}]}}
+{
+  "feed": {
+    "updated": "2026-10-19",
+    "kpis": {
+      "asof": "19 octobre 2026",
+      "note": "Source : recoupement automatique Radio Okapi, MediaCongo, Actualite.cd",
+      "items": [
+        {
+          "l": "Cas confirmés",
+          "v": "8 300"
+        },
+        {
+          "l": "Décès",
+          "v": "4 018",
+          "bad": true
+        },
+        {
+          "l": "Létalité",
+          "v": "48,4 %"
+        },
+        {
+          "l": "Provinces touchées",
+          "v": "8"
+        }
+      ]
+    },
+    "items": [
+      {
+        "tag": "Santé",
+        "date": "19 oct.",
+        "title": "Ebola : le Nord-Ubangi devient la 8e province touchée en RDC",
+        "summary": "L'épidémie progresse sur le territoire national. Les autorités sanitaires viennent de confirmer officiellement l'apparition de cas confirmés dans le Nord-Ubangi, ce qui porte à huit le nombre total de provinces affectées par la souche Bundibugyo.",
+        "v": 2,
+        "sources": [
+          {
+            "n": "Radio Okapi",
+            "u": "https://radiookapi.net"
+          }
+        ]
+      },
+      {
+        "tag": "Politique",
+        "date": "19 oct.",
+        "title": "Prince Epenge interpelle le gouvernement sur le dialogue national inclusif",
+        "summary": "Réagissant aux déclarations du porte-parole du gouvernement Patrick Muyaya concernant la création du FRN par Joseph Kabila, l'opposant Prince Epenge exige que l'exécutif clarifie immédiatement sa propre position sur la tenue du dialogue.",
+        "v": 2,
+        "sources": [
+          {
+            "n": "MediaCongo / Radio Okapi",
+            "u": "https://mediacongo.net"
+          }
+        ]
+      },
+      {
+        "tag": "Sécurité",
+        "date": "19 oct.",
+        "title": "Haut-Katanga : redynamisation des patrouilles de grande envergure à Lubumbashi",
+        "summary": "Face à la montée des tensions et aux menaces sécuritaires liées à la création du Front pour la refondation de la nation, le général Eddy Kapend a mobilisé ses troupes et la police nationale annonce le déploiement de patrouilles majeures.",
+        "v": 2,
+        "sources": [
+          {
+            "n": "Actualite.cd",
+            "u": "https://actualite.cd"
+          }
+        ]
+      }
+    ]
+  }
+}
