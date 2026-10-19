@@ -15,14 +15,15 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-python: '3.x'
+         python-version: '3.x' 
+    
 
       - name: Install dependencies
         run: |
           pip install requests beautifulsoup4
 
       - name: Run update script
-        run: python update_feed.py
+        run: python "Update feed.py"
 
       - name: Commit changes
         run: |
