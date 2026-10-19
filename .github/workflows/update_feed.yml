@@ -1,0 +1,32 @@
+name: Update Feed
+
+on:
+  schedule:
+    - cron: '0 * * * *' # S'exécute toutes les heures
+  workflow_dispatch: # Permet de le lancer manuellement avec le bouton
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-python: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4
+
+      - name: Run update script
+        run: python update_feed.py
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/feed-latest.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Mise à jour automatique du flux" && git push)
